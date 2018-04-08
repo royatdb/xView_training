@@ -139,4 +139,9 @@ dbutils.fs.mkdirs("/mnt/roy/xview_fine_tuned")
 
 # COMMAND ----------
 
+# MAGIC %sh
+# MAGIC ls -lh /dbfs/FileStore/xview_train.zip
+
+# COMMAND ----------
+
 # MAGIC %md https://demo.cloud.databricks.com/files/xview_train.zip
