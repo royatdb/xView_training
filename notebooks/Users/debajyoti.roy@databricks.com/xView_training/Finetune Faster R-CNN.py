@@ -95,7 +95,7 @@ cd ./models/research
 export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 
 cd object_detection
-python3 export_inference_graph.py --input_type image_tensor --pipeline_config_path /dbfs/mnt/roy/xview_train/pipeline.config --trained_checkpoint_prefix ../../../train/model.ckpt-317 --output_directory ../../../fine_tuned_model
+python3 export_inference_graph.py --input_type image_tensor --pipeline_config_path /dbfs/mnt/roy/xview_train/pipeline.config --trained_checkpoint_prefix ../../../train/model.ckpt-207 --output_directory ../../../fine_tuned_model
 
 
 """, True)
@@ -111,6 +111,25 @@ python3 export_inference_graph.py --input_type image_tensor --pipeline_config_pa
 # COMMAND ----------
 
 # MAGIC %sh ./fine_tuned_model.sh
+
+# COMMAND ----------
+
+# MAGIC %sh
+# MAGIC ls -lh ./fine_tuned_model
+
+# COMMAND ----------
+
+dbutils.fs.mkdirs("/mnt/roy/xview_fine_tuned")
+
+# COMMAND ----------
+
+# MAGIC %sh
+# MAGIC cp ./fine_tuned_model/frozen_inference_graph.pb /dbfs/mnt/roy/xview_fine_tuned
+
+# COMMAND ----------
+
+# MAGIC %sh
+# MAGIC ls -lh /dbfs/mnt/roy/xview_fine_tuned
 
 # COMMAND ----------
 
