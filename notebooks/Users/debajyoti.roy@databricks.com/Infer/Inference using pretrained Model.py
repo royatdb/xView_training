@@ -32,12 +32,6 @@ display(
 
 # COMMAND ----------
 
-display(
-  dbutils.fs.ls("/mnt/roy/xview_fine_tuned")
-)
-
-# COMMAND ----------
-
 import numpy as np
 import tensorflow as tf
 from PIL import Image
@@ -66,8 +60,7 @@ def chip_image(img, chip_size=(300,300)):
 
 # COMMAND ----------
 
-# checkpoint = "/dbfs/mnt/roy/xview_model/public_release/vanilla.pb"
-checkpoint = "/dbfs/mnt/roy/xview_fine_tuned/frozen_inference_graph.pb"
+checkpoint = "/dbfs/mnt/roy/xview_model/public_release/vanilla.pb"
 chip_size = 300
 
 # COMMAND ----------
@@ -227,7 +220,7 @@ with open("/dbfs/mnt/roy/xview_out/1192_prediction.txt",'w') as f:
 # COMMAND ----------
 
 from pyspark.sql.types import IntegerType
-from pyspark.sql.functions import col
+from pyspark.sql.functions import col, desc
 
 classes = spark.read.csv("/mnt/roy/xview_classes/xview_class_labels.txt", sep=":", inferSchema=True).\
   withColumn("id", col("_c0")).\
@@ -246,7 +239,7 @@ display(predictions)
 # COMMAND ----------
 
 display(
-  predictions.join(classes, predictions.class_id==classes.id).groupBy("name").count().orderBy("count").filter("count>0")
+  predictions.join(classes, predictions.class_id==classes.id).groupBy("name").count().orderBy(desc("count")).filter("count>0").limit(10)
 )
 
 # COMMAND ----------
