@@ -8,10 +8,12 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC # Train:
+# MAGIC # Agenda:
 # MAGIC * Setup `Tensorflow Object Detection`
 # MAGIC * Train
 # MAGIC * Export model checkpoint
+# MAGIC 
+# MAGIC ![flow](https://media.licdn.com/media/gcrc/dms/image/C4D12AQFrhd5Nr3_jew/article-cover_image-shrink_600_2000/0?e=2122408800&v=beta&t=1k_Zv2frpZapHl4heL7FS3yCv0rdAL3AAdBx4GoRZZU)
 
 # COMMAND ----------
 
